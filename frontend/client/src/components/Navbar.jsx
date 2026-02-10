@@ -41,7 +41,7 @@ const Navbar = () => {
             <div className="container mx-auto px-6 py-4 flex justify-between items-center">
                 {/* Logo Section */}
                 <div className="flex items-center gap-3 group cursor-pointer">
-                    <div className="w-12 h-12 bg-gradient-to-br from-ajce-teal to-ajce-blue rounded-lg shadow-md flex items-center justify-center text-white font-bold text-2xl transform group-hover:rotate-3 transition-transform duration-300">
+                    <div className="w-12 h-12 bg-white rounded-lg shadow-md flex items-center justify-center text-ajce-teal font-bold text-2xl transform group-hover:rotate-3 transition-transform duration-300 border border-gray-100">
                         A
                     </div>
                     <div>
