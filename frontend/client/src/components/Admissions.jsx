@@ -6,13 +6,48 @@ const Admissions = () => {
     const form = useRef();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [message, setMessage] = useState(null);
+    const [emailError, setEmailError] = useState('');
+    const [phoneError, setPhoneError] = useState('');
+
+    const validateEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    };
+
+    const validatePhone = (phone) => {
+        const re = /^\d{10}$/; // Validates a 10-digit number
+        return re.test(phone);
+    };
 
     const sendEmail = (e) => {
         e.preventDefault();
-        setIsSubmitting(true);
+
+        // Reset errors
+        setEmailError('');
+        setPhoneError('');
         setMessage(null);
 
+        const formData = new FormData(form.current);
+        const userEmail = formData.get('user_email');
+        const userPhone = formData.get('user_phone');
+        let isValid = true;
+
+        if (!validateEmail(userEmail)) {
+            setEmailError('Please enter a valid email address.');
+            isValid = false;
+        }
+
+        if (!validatePhone(userPhone)) {
+            setPhoneError('Please enter a valid 10-digit mobile number.');
+            isValid = false;
+        }
+
+        if (!isValid) return;
+
+        setIsSubmitting(true);
+
         // REPLACE THESE WITH YOUR ACTUAL EMAILJS SERVICE ID, TEMPLATE ID, AND PUBLIC KEY
+        // Intended receiver: varghese.sen.alfin@gmail.com (Configure this in your EmailJS template settings)
         const SERVICE_ID = 'service_gmail'; // Example: service_gmail
         const TEMPLATE_ID = 'template_admission'; // Example: template_admission
         const PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // Example: user_123456789
@@ -117,9 +152,10 @@ const Admissions = () => {
                                     type="email"
                                     name="user_email"
                                     required
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ajce-teal focus:border-ajce-teal outline-none transition-all"
+                                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ajce-teal focus:border-ajce-teal outline-none transition-all ${emailError ? 'border-red-500' : 'border-gray-300'}`}
                                     placeholder="john@example.com"
                                 />
+                                {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
                             </div>
 
                             <div>
@@ -128,9 +164,10 @@ const Admissions = () => {
                                     type="tel"
                                     name="user_phone"
                                     required
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ajce-teal focus:border-ajce-teal outline-none transition-all"
-                                    placeholder="+91 98765 43210"
+                                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-ajce-teal focus:border-ajce-teal outline-none transition-all ${phoneError ? 'border-red-500' : 'border-gray-300'}`}
+                                    placeholder="9876543210"
                                 />
+                                {phoneError && <p className="text-red-500 text-xs mt-1">{phoneError}</p>}
                             </div>
 
                             <div>
