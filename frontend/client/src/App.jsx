@@ -6,6 +6,7 @@ import Departments from './components/Departments';
 import Admissions from './components/Admissions';
 import Placements from './components/Placements';
 import Faculty from './components/Faculty';
+import Research from './components/Research';
 import Footer from './components/Footer';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <About />
         <Departments />
         <Faculty />
+        <Research />
         <Placements />
         <Admissions />
       </main>
