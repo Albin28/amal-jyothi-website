@@ -20,7 +20,6 @@ const Navbar = () => {
         { name: "ABOUT", href: "#about" },
         { name: "DEPARTMENTS", href: "#departments" },
         { name: "FACULTY", href: "#faculty" },
-        { name: "STUDENT SUPPORT", href: "#support" },
         { name: "RESEARCH", href: "#research" },
         { name: "ADMISSIONS", href: "#admissions" },
         { name: "PLACEMENTS", href: "#placements" },
